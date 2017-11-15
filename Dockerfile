@@ -25,14 +25,11 @@ RUN apt-get update && apt-get install -y \
     python3-dev \
     python3-pip \
     python3-virtualenv \
-    python \
-    python-dev \
-    python-pip \
-    python-virtualenv \
-    nginx \
-    supervisor \
     git
 
 # Install nodejs
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs
+
+# Install Python packages.
+RUN pip install tox
