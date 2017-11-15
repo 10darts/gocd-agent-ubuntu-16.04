@@ -2,6 +2,7 @@
 # build and test 10darts.
 FROM gocd/gocd-agent-ubuntu-16.04:v17.11.0
 MAINTAINER 10darts <it@10darts.com>
+ENV LC_ALL C
 
 # Packages required
 RUN sed -i 's/main/main contrib/g' /etc/apt/sources.list
@@ -24,7 +25,6 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-dev \
     python3-pip \
-    python3-virtualenv \
     git
 
 # Install nodejs
@@ -32,4 +32,4 @@ RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs
 
 # Install Python packages.
-RUN pip install tox
+RUN pip3 install tox virtualenv
