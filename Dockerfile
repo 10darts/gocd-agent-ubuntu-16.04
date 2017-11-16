@@ -8,6 +8,7 @@ ENV LC_ALL C
 RUN sed -i 's/main/main contrib/g' /etc/apt/sources.list
 RUN apt-get update && apt-get install -y \
      software-properties-common
+RUN apt-add-repository ppa:ansible/ansible
 RUN apt-get update && apt-get install -y \
     software-properties-common \
     build-essential \
@@ -25,7 +26,8 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-dev \
     python3-pip \
-    git
+    git \
+    ansible
 
 # Install nodejs
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
