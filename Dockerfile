@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y \
     gdal-bin \
     geoip-bin \
     geoip-database-contrib \
+    geoipupdate \
     libffi-dev \
     curl \
     python3 \
@@ -29,6 +30,10 @@ RUN apt-get update && apt-get install -y \
     git \
     python-boto \
     ansible
+
+# Install geoipupdate together with our licence key and config for it.
+COPY ./GeoIP.conf /etc/GeoIP.conf
+RUN geoipupdate -f /etc/GeoIP.conf -d /usr/share/GeoIP
 
 # Install nodejs
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
